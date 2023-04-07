@@ -12,7 +12,7 @@ use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
 class AuthService
 {
-    public function create($input): string
+    public function create($input): String
     {
         try {
             return DB::transaction(function () use ($input){
@@ -23,13 +23,19 @@ class AuthService
             throw new BadRequestGraphQLException($e->getMessage());
         }
     }
-    public function auth($input): User
+    public function auth($input): String
     {
         try {
 
             if(Auth::attempt($input))
             {
-                return Auth::user();
+                $user = User::find(Auth::id());
+                $tokenName = (string) $user->id;
+                $user->tokens->where('name', $tokenName)->each->delete();
+                $token = $user->createToken($user->id)->plainTextToken;
+                return $token;
+            }else{
+                throw new BadRequestHttpException("Не удалось авторизироваться");
             }
 
         } catch (BadRequestHttpException|ModelNotFoundException $e) {

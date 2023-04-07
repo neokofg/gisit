@@ -14,7 +14,7 @@ final class AuthUser
     public function __construct(private AuthService $authService)
     {
     }
-    public function __invoke($_, array $args): User
+    public function __invoke($_, array $args): String
     {
         return $this->authService->auth($args);
     }
