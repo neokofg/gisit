@@ -1,0 +1,21 @@
+type User {
+
+    id: ID!
+
+    "When the account was created."
+    created_at: DateTime!
+
+    "When the account was last updated."
+    updated_at: DateTime!
+
+    name: String!
+
+    email: String!
+
+    email_verified_at: DateTime
+
+    password: String
+
+    rememberToken: String
+
+}

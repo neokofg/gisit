@@ -1,0 +1,9 @@
+input CreateUser {
+
+    email: String! @rules(apply: ["email"])
+
+    name: String! @rules(apply: ["min:3","max:30"])
+
+    password: String!  @rules(apply: ["min:5","max:30"])
+
+}
