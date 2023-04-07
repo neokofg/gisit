@@ -1,0 +1,7 @@
+input AuthUser {
+
+    email: String! @rules(apply: ["email"])
+
+    password: String! @rules(apply: ["min:5","max:20"])
+
+}

@@ -4,6 +4,6 @@ input CreateUser {
 
     name: String! @rules(apply: ["min:3","max:30"])
 
-    password: String!  @rules(apply: ["min:5","max:30"])
+    password: String! @hash @rules(apply: ["min:5","max:30"])
 
 }

@@ -5,6 +5,7 @@ namespace App\Services;
 
 use App\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Laragraph\Utils\BadRequestGraphQLException;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
@@ -22,6 +23,17 @@ class AuthService
             throw new BadRequestGraphQLException($e->getMessage());
         }
     }
+    public function auth($input): User
+    {
+        try {
 
-    // Другие методы, связанные с сертификатами
+            if(Auth::attempt($input))
+            {
+                return Auth::user();
+            }
+
+        } catch (BadRequestHttpException|ModelNotFoundException $e) {
+            throw new BadRequestGraphQLException($e->getMessage());
+        }
+    }
 }
