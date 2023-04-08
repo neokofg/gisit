@@ -94,6 +94,17 @@ class BotController extends Controller
                             'text' => 'Теперь к вам будут приходить PUSH-уведомления',
                         ];
                         $response = Http::get("https://api.telegram.org/bot6120276889:AAEQU2t2wCHYUpPkA0liwo9H2MbJ_uLNLO0/sendMessage?" . http_build_query($data));
+                        if(Auth::user()->is_scientist == true){
+                            if(Auth::user()->scientists()->is_approved == true){
+                                $data = [
+                                    'chat_id' => $update->message->chat->id,
+                                    'text' => 'Вы вошли как сертифицированный ученый!' . "\n" .
+                                        'Теперь к вам будут приходить уведомления, в случае покупки вашей карты'
+                                    ,
+                                ];
+                                $response = Http::get("https://api.telegram.org/bot6120276889:AAEQU2t2wCHYUpPkA0liwo9H2MbJ_uLNLO0/sendMessage?" . http_build_query($data));
+                            }
+                        }
                     } else {
                         $userdata = array(
                             'status' => 'started',
