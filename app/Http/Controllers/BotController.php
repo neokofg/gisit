@@ -60,14 +60,14 @@ class BotController extends Controller
                         ];
                         $response = Http::get("https://api.telegram.org/bot6120276889:AAEQU2t2wCHYUpPkA0liwo9H2MbJ_uLNLO0/sendMessage?" . http_build_query($data));
                     }
-                }else if($user->status == 'logined') {
+                }else if ($user->status == 'logined') {
                     if($update->message->text == '/logout'){
-                        Telegram::where('userbase_id',$user->id)->delete();
                         $data = [
                             'chat_id' => $update->message->chat->id,
                             'text' => 'Вы успешно вышли!'
                         ];
                         $response = Http::get("https://api.telegram.org/bot6120276889:AAEQU2t2wCHYUpPkA0liwo9H2MbJ_uLNLO0/sendMessage?" . http_build_query($data));
+                        Telegram::where('userbase_id',$user->id)->delete();
                     }else{
                         $data = [
                             'chat_id' => $update->message->chat->id,
