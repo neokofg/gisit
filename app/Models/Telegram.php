@@ -20,7 +20,7 @@ class Telegram extends Model
 
     public function user(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'userbase_id','id');
+        return $this->belongsTo(User::class, 'userbase_id','id','users');
     }
 
     protected $table = 'telegram';
