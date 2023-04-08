@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BotController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +17,4 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::post('/6120276889:AAEQU2t2wCHYUpPkA0liwo9H2MbJ_uLNLO0/webhook', [BotController::class , 'botResponse']);
