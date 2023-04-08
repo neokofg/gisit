@@ -12,7 +12,7 @@ const Header = () => {
           <nav>
             <ul className="flex gap-8 text-slate-600 font-medium text-lg leading-[25px]">
               <li className="cursor-pointer">Главная</li>
-              <li className="cursor-pointer">Метрика</li>
+              <li className="cursor-pointer">Карта</li>
               <li className="cursor-pointer">Способ оплаты</li>
               <li className="cursor-pointer">О нас</li>
             </ul>

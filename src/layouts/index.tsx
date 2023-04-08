@@ -3,6 +3,7 @@ import { useAppSelector } from "@/hooks";
 import { Manrope } from "next/font/google";
 import type { FC, ReactNode } from "react";
 import Header from "@/components/header";
+import Footer from "@/components/footer";
 const manrope = Manrope({ subsets: ["cyrillic"] });
 type Layout = {
   children: ReactNode;
@@ -23,7 +24,7 @@ const MainLayout: FC<Layout> = ({ children }) => {
       >
         <Header></Header>
         {children}
-        {/* <Footer></Footer> */}
+        <Footer></Footer>
       </main>
       {/* <Modal /> */}
     </>

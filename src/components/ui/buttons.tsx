@@ -7,6 +7,7 @@ export interface ButtonProps {
   disabled?: boolean;
   rounded?: string;
   children: ReactNode;
+  textSize?: string;
 }
 export interface SecondaryButtonProps extends ButtonProps {
   color?: string;
@@ -18,11 +19,13 @@ export const PrimaryButton: FC<ButtonProps> = ({
   disabled = false,
   rounded = "90px",
   children,
+  textSize = "18px",
 }) => {
   const style = {
     height: height,
     width: width,
     borderRadius: rounded,
+    fontSize: textSize,
   };
   return (
     <button
