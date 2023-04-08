@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setActive } from "../store/modalSlice";
+import { setActive } from "../store/modal.slice";
 const Modal = ({ children }) => {
   const dispatch = useDispatch();
   const modal = useSelector((state) => state.modal.active);
