@@ -1,0 +1,5 @@
+type JSONRegion {
+    district: String!
+
+    coordinates: String!
+}

@@ -18,6 +18,8 @@ type Query {
     scientist(id: Int! @eq): Scientist @find
 
     scientists: [Scientist!]! @all
+
+    getRegion(id: Int! @eq): JSONRegion
 }
 
 type Mutation {
