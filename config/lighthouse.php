@@ -172,6 +172,8 @@ return [
             : \GraphQL\Validator\Rules\DisableIntrospection::DISABLED,
     ],
 
+    'introspection' => true,
+
     /*
     |--------------------------------------------------------------------------
     | Pagination
