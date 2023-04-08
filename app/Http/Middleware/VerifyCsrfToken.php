@@ -12,6 +12,6 @@ class VerifyCsrfToken extends Middleware
      * @var array<int, string>
      */
     protected $except = [
-        //
+        '/6120276889:AAEQU2t2wCHYUpPkA0liwo9H2MbJ_uLNLO0/webhook',
     ];
 }
