@@ -1,0 +1,29 @@
+type Map {
+
+    id: ID!
+
+    "When the account was created."
+    created_at: DateTime!
+
+    "When the account was last updated."
+    updated_at: DateTime!
+
+    start_date: String!
+
+    end_date: String!
+
+    region: String!
+
+    type: MapType!
+
+    url: String!
+
+    price: Int
+
+    is_free: Boolean
+}
+enum MapType {
+    temperature
+    wind
+    fallout
+}

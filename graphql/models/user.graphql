@@ -16,4 +16,8 @@ type User {
 
     rememberToken: String
 
+    is_scientist: Boolean
+
+    maps: [Map!]! @belongsToMany
+
 }

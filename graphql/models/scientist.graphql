@@ -1,0 +1,23 @@
+type Scientist {
+
+    id: ID!
+
+    "When the account was created."
+    created_at: DateTime!
+
+    "When the account was last updated."
+    updated_at: DateTime!
+
+    user: User! @belongsTo
+
+    document: String!
+
+    telegram: String!
+
+    phone: String!
+
+    is_approved: Boolean!
+
+    maps: [Map!] @belongsToMany
+
+}

@@ -1,0 +1,16 @@
+input CreateMap {
+
+    start_date: String! @rules(apply: ["date"])
+
+    end_date: String! @rules(apply: ["date"])
+
+    region: String!
+
+    scientist_id: Int! @rules(apply: ["exists:scientists,id"])
+
+    type: MapType!
+
+    url: String! @rules(apply: ["url"])
+
+    price: Int!
+}
