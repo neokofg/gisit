@@ -5,6 +5,7 @@ namespace App\Services;
 
 use App\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Laragraph\Utils\BadRequestGraphQLException;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
@@ -15,7 +16,7 @@ class UserService
     {
         try {
             return DB::transaction(function () use ($input){
-                $user = User::find($input['user_id']);
+                $user = Auth::user();
                 $user->maps()->syncWithoutDetaching($input['map_id']);
                 return "Карта успешно куплена!";
             });

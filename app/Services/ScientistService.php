@@ -5,6 +5,7 @@ namespace App\Services;
 
 use App\Models\Scientist;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Laragraph\Utils\BadRequestGraphQLException;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
@@ -31,7 +32,7 @@ class ScientistService
         try {
             return DB::transaction(function() use($input) {
                 $scientist = Scientist::create($input);
-                $user = $scientist->user()->first();
+                $user = Auth::user();
                 $user->is_scientist = true;
                 $user->save();
                 return $scientist->fresh();

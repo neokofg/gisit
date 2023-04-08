@@ -6,6 +6,7 @@ namespace App\Services;
 use App\Models\Map;
 use App\Models\Scientist;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Laragraph\Utils\BadRequestGraphQLException;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
@@ -21,7 +22,7 @@ class MapService
                     $map->is_free = true;
                     $map->save();
                 }
-                $scientist = Scientist::find($input['scientist_id']);
+                $scientist = Auth::user()->scientists();
                 $scientist->maps()->syncWithoutDetaching($map->id);
                 return $map->fresh();
             });

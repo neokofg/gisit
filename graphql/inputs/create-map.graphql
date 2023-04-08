@@ -6,8 +6,6 @@ input CreateMap {
 
     region: String!
 
-    scientist_id: Int! @rules(apply: ["exists:scientists,id"])
-
     type: MapType!
 
     url: String! @rules(apply: ["url"])

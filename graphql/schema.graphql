@@ -26,11 +26,11 @@ type Mutation {
 
     createUser(input:CreateUser! @spread): String
 
-    createScientist(input:CreateScientist! @spread): Scientist
+    createScientist(input:CreateScientist! @spread): Scientist @guard @auth
 
     approveScientist(id: Int! @eq, approve: Boolean!): String
 
-    createMap(input: CreateMap! @spread): Map
+    createMap(input: CreateMap! @spread): Map @guard @auth
 
-    buyMap(input: BuyMap! @spread): String
+    buyMap(input: BuyMap! @spread): String @guard @auth
 }
