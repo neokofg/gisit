@@ -38,8 +38,8 @@ export const PrimaryButton: FC<ButtonProps> = ({
 };
 export const SecondaryButton: FC<SecondaryButtonProps> = ({
   onClick,
-  height = "48px",
-  width = "340px",
+  height = "73px",
+  width = "165px",
   disabled = false,
   rounded = "90px",
   color = "#1C63EC",
