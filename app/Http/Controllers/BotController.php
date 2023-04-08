@@ -32,17 +32,17 @@ class BotController extends Controller
                         'reply_to_message_id' => $update->message->message_id,
                         'text' => 'Здравствуйте! Я ваш личный помощник по платформе ЯПогода!!!'
                     ];
-                    $response = Http::get("https://api.telegram.org/bot6112927855:AAF-Rc36LyNcLeFuyjJw8vdEfDBw_QEnhMo/sendMessage?" . http_build_query($data));
+                    $response = Http::get("https://api.telegram.org/bot6120276889:AAEQU2t2wCHYUpPkA0liwo9H2MbJ_uLNLO0/sendMessage?" . http_build_query($data));
                     $data = [
                     'chat_id' => $update->message->chat->id,
                     'text' => 'Для начала войдите в свой аккаунт'
                     ];
-                    $response = Http::get("https://api.telegram.org/bot6112927855:AAF-Rc36LyNcLeFuyjJw8vdEfDBw_QEnhMo/sendMessage?" . http_build_query($data));
+                    $response = Http::get("https://api.telegram.org/bot6120276889:AAEQU2t2wCHYUpPkA0liwo9H2MbJ_uLNLO0/sendMessage?" . http_build_query($data));
                     $data = [
                     'chat_id' => $update->message->chat->id,
                     'text' => 'Введите свой email'
                     ];
-                    $response = Http::get("https://api.telegram.org/bot6112927855:AAF-Rc36LyNcLeFuyjJw8vdEfDBw_QEnhMo/sendMessage?" . http_build_query($data));
+                    $response = Http::get("https://api.telegram.org/bot6120276889:AAEQU2t2wCHYUpPkA0liwo9H2MbJ_uLNLO0/sendMessage?" . http_build_query($data));
                 }else{
                     $userdata = array(
                         'status' => 'started',
@@ -53,12 +53,12 @@ class BotController extends Controller
                         'reply_to_message_id' => $update->message->message_id,
                         'text' => 'Для начала войдите в свой аккаунт'
                     ];
-                    $response = Http::get("https://api.telegram.org/bot6112927855:AAF-Rc36LyNcLeFuyjJw8vdEfDBw_QEnhMo/sendMessage?" . http_build_query($data));
+                    $response = Http::get("https://api.telegram.org/bot6120276889:AAEQU2t2wCHYUpPkA0liwo9H2MbJ_uLNLO0/sendMessage?" . http_build_query($data));
                     $data = [
                         'chat_id' => $update->message->chat->id,
                         'text' => 'Введите свой email'
                     ];
-                    $response = Http::get("https://api.telegram.org/bot6112927855:AAF-Rc36LyNcLeFuyjJw8vdEfDBw_QEnhMo/sendMessage?" . http_build_query($data));
+                    $response = Http::get("https://api.telegram.org/bot6120276889:AAEQU2t2wCHYUpPkA0liwo9H2MbJ_uLNLO0/sendMessage?" . http_build_query($data));
                 }
                 } else if ($user->status == 'started') {
                     $userdata = array(
@@ -71,7 +71,7 @@ class BotController extends Controller
                         'text' => 'Введите пароль',
                         'reply_to_message_id' => $update->message->message_id,
                     ];
-                    $response = Http::get("https://api.telegram.org/bot6112927855:AAF-Rc36LyNcLeFuyjJw8vdEfDBw_QEnhMo/sendMessage?" . http_build_query($data));
+                    $response = Http::get("https://api.telegram.org/bot6120276889:AAEQU2t2wCHYUpPkA0liwo9H2MbJ_uLNLO0/sendMessage?" . http_build_query($data));
                 } else if ($user->status == 'password') {
                     $user = $user->fresh();
                     $email = $user->input;
@@ -88,12 +88,12 @@ class BotController extends Controller
                             'chat_id' => $update->message->chat->id,
                             'text' => 'Вы успешно вошли!',
                         ];
-                        $response = Http::get("https://api.telegram.org/bot6112927855:AAF-Rc36LyNcLeFuyjJw8vdEfDBw_QEnhMo/sendMessage?" . http_build_query($data));
+                        $response = Http::get("https://api.telegram.org/bot6120276889:AAEQU2t2wCHYUpPkA0liwo9H2MbJ_uLNLO0/sendMessage?" . http_build_query($data));
                         $data = [
                             'chat_id' => $update->message->chat->id,
                             'text' => 'Теперь к вам будут приходить PUSH-уведомления',
                         ];
-                        $response = Http::get("https://api.telegram.org/bot6112927855:AAF-Rc36LyNcLeFuyjJw8vdEfDBw_QEnhMo/sendMessage?" . http_build_query($data));
+                        $response = Http::get("https://api.telegram.org/bot6120276889:AAEQU2t2wCHYUpPkA0liwo9H2MbJ_uLNLO0/sendMessage?" . http_build_query($data));
                     } else {
                         $userdata = array(
                             'status' => 'started',
@@ -104,18 +104,18 @@ class BotController extends Controller
                             'chat_id' => $update->message->chat->id,
                             'text' => 'Неправильный логин или пароль!',
                         ];
-                        $response = Http::get("https://api.telegram.org/bot6112927855:AAF-Rc36LyNcLeFuyjJw8vdEfDBw_QEnhMo/sendMessage?" . http_build_query($data));$data = [
+                        $response = Http::get("https://api.telegram.org/bot6120276889:AAEQU2t2wCHYUpPkA0liwo9H2MbJ_uLNLO0/sendMessage?" . http_build_query($data));$data = [
                             'chat_id' => $update->message->chat->id,
                             'text' => 'Попробуйте заново',
                         ];
-                        $response = Http::get("https://api.telegram.org/bot6112927855:AAF-Rc36LyNcLeFuyjJw8vdEfDBw_QEnhMo/sendMessage?" . http_build_query($data));
+                        $response = Http::get("https://api.telegram.org/bot6120276889:AAEQU2t2wCHYUpPkA0liwo9H2MbJ_uLNLO0/sendMessage?" . http_build_query($data));
                     }
                 } else {
                     $data = [
                         'chat_id' => $update->message->chat->id,
                         'text' => 'Сброс: /start',
                     ];
-                    $response = Http::get("https://api.telegram.org/bot6112927855:AAF-Rc36LyNcLeFuyjJw8vdEfDBw_QEnhMo/sendMessage?" . http_build_query($data));
+                    $response = Http::get("https://api.telegram.org/bot6120276889:AAEQU2t2wCHYUpPkA0liwo9H2MbJ_uLNLO0/sendMessage?" . http_build_query($data));
                 }
             }
         } catch (\Exception $e) {
