@@ -11,6 +11,31 @@ export interface ButtonProps {
 export interface SecondaryButtonProps extends ButtonProps {
   color?: string;
 }
+export const PrimaryButton: FC<ButtonProps> = ({
+  onClick,
+  height = "73px",
+  width = "290px",
+  disabled = false,
+  rounded = "90px",
+  children,
+}) => {
+  const style = {
+    height: height,
+    width: width,
+    borderRadius: rounded,
+  };
+  return (
+    <button
+      className="bg-[#3B82F6] text-white flex justify-center font-medium items-center text-lg text-center 
+      leading-[25px] hover:bg-[#257AF3] active:bg-[#0F55EA] disabled:bg-[#C9CACB] disabled:text-[#F0F1F2]"
+      style={style}
+      onClick={onClick}
+      disabled={disabled}
+    >
+      {children}
+    </button>
+  );
+};
 export const SecondaryButton: FC<SecondaryButtonProps> = ({
   onClick,
   height = "48px",

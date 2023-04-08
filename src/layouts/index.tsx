@@ -6,7 +6,7 @@ const manrope = Manrope({ subsets: ["cyrillic"] });
 type Layout = {
   children: ReactNode;
 };
-const MainLayou: FC<Layout> = ({ children }) => {
+const MainLayout: FC<Layout> = ({ children }) => {
   const modal = useAppSelector((state) => state.modal.active);
   return (
     <>
@@ -28,3 +28,4 @@ const MainLayou: FC<Layout> = ({ children }) => {
     </>
   );
 };
+export default MainLayout;

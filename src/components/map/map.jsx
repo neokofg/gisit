@@ -34,13 +34,54 @@ const extendMap = [11013447.6518, 7085566.549, 18614341.9101, 14052497.1404];
 //     },
 //   ],
 // });
+
+const one = {
+  type: "FeatureCollection",
+  features: [],
+};
+
+let variables = {};
+let is_end = false;
+
+// Use a callback to be notified when all queries are completed
+const onAllQueriesCompleted = () => {
+  for (let k = 0; k < 36; k++) {
+    const ans = {
+      type: "Feature",
+      properties: { district: variables["j" + k]?.getRegion?.district },
+      geometry: {
+        type: "Polygon",
+        coordinates: [JSON.parse(variables["j" + k]?.getRegion?.coordinates)],
+      },
+    };
+    one.features.push(ans);
+    console.log(one);
+  }
+};
+
+let completedQueries = 0;
+
 const MapOL = () => {
-  const { data } = useQuery(GETREGION);
   const map = useContext(MapContext);
   const [center, setCenter] = useState([-94.9065, 38.9884]);
   const [zoom, setZoom] = useState(4);
-  const [showLayer1, setShowLayer1] = useState(true);
-  const [showLayer2, setShowLayer2] = useState(true);
+  for (let u = 0; u < 36; u++) {
+    useQuery(GETREGION, {
+      variables: {
+        getRegionId: u + 1,
+      },
+      onCompleted: (data) => {
+        variables["j" + u] = data;
+
+        // Check if all queries are completed
+        completedQueries++;
+        if (completedQueries === 36) {
+          is_end = true;
+          onAllQueriesCompleted();
+        }
+      },
+    });
+  }
   return (
     <div>
       <Map
@@ -52,8 +93,12 @@ const MapOL = () => {
           {/* <TileLayer source={source} zIndex={5} opacity={1} /> */}
 
           <TileLayer source={new osm()} />
-
-          {/* <VectorLayer source={GJSON} style={styles.MultiPolygon} zIndex={3} /> */}
+          {is_end ? (
+            <VectorLayer source={one} style={styles.MultiPolygon} zIndex={3} />
+          ) : (
+            ""
+          )}
+          {/*  */}
         </Layers>
 
         <Controls>
