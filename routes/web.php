@@ -18,3 +18,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::post('/6120276889:AAEQU2t2wCHYUpPkA0liwo9H2MbJ_uLNLO0/webhook', [BotController::class , 'botResponse']);
+Route::get('/buymap', [\App\Http\Controllers\BuyController::class, 'money']);

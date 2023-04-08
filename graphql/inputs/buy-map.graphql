@@ -1,5 +1,5 @@
 input BuyMap {
 
-    map_id: Int! @rules(apply: ["exists:maps,id"])
+    scientist_id: Int! @rules(apply: ["exists:scientists,id"])
 
 }

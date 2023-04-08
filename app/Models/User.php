@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use newrelic\DistributedTracePayload;
 
 class User extends Authenticatable
 {
@@ -51,8 +52,8 @@ class User extends Authenticatable
         return $this->hasOne(Scientist::class);
     }
 
-    public function maps(): BelongsToMany
+    public function buyedScientists(): BelongsToMany
     {
-        return $this->belongsToMany(Map::class, 'users_maps','user_id','map_id');
+        return $this->belongsToMany(Scientist::class, 'users_maps','user_id','scientist_id');
     }
 }
