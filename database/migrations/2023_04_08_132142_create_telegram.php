@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('status');
             $table->string('user_id');
             $table->string('name');
+            $table->foreignId('userbase_id')->constrained();
             $table->string('input')->nullable();
         });
     }

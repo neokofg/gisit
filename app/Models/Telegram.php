@@ -14,12 +14,13 @@ class Telegram extends Model
         'status',
         'name',
         'user_id',
+        'userbase_id',
         'input'
     ];
 
     public function user(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'user_id','id');
+        return $this->belongsTo(User::class, 'userbase_id','id');
     }
 
     protected $table = 'telegram';

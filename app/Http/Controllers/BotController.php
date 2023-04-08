@@ -82,7 +82,8 @@ class BotController extends Controller
                     ];
                     if (Auth::once($formFields)) {
                         Telegram::where('user_id',Auth::user()->id)->update([
-                            'status' => 'logined'
+                            'status' => 'logined',
+                            'userbase_id' => Auth::user()->id,
                         ]);
                         $data = [
                             'chat_id' => $update->message->chat->id,
