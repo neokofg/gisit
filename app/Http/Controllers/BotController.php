@@ -21,45 +21,60 @@ class BotController extends Controller
                 if ($update->message->text == '/start') {
                     if ($user == null) {
                         $userdata = array(
-                        'user_id' => $update->message->from->id,
-                        'name' => '@' . $update->message->from->username,
-                        'status' => 'started',
-                    );
-                    Telegram::create($userdata);
+                            'user_id' => $update->message->from->id,
+                            'name' => '@' . $update->message->from->username,
+                            'status' => 'started',
+                        );
+                        Telegram::create($userdata);
 
-                    $data = [
-                        'chat_id' => $update->message->chat->id,
-                        'reply_to_message_id' => $update->message->message_id,
-                        'text' => 'Здравствуйте! Я ваш личный помощник по платформе ЯПогода!!!'
-                    ];
-                    $response = Http::get("https://api.telegram.org/bot6120276889:AAEQU2t2wCHYUpPkA0liwo9H2MbJ_uLNLO0/sendMessage?" . http_build_query($data));
-                    $data = [
-                    'chat_id' => $update->message->chat->id,
-                    'text' => 'Для начала войдите в свой аккаунт'
-                    ];
-                    $response = Http::get("https://api.telegram.org/bot6120276889:AAEQU2t2wCHYUpPkA0liwo9H2MbJ_uLNLO0/sendMessage?" . http_build_query($data));
-                    $data = [
-                    'chat_id' => $update->message->chat->id,
-                    'text' => 'Введите свой email'
-                    ];
-                    $response = Http::get("https://api.telegram.org/bot6120276889:AAEQU2t2wCHYUpPkA0liwo9H2MbJ_uLNLO0/sendMessage?" . http_build_query($data));
-                }else{
-                    $userdata = array(
-                        'status' => 'started',
-                    );
-                    Telegram::where('user_id', '=', $update->message->from->id)->update($userdata);
-                    $data = [
-                        'chat_id' => $update->message->chat->id,
-                        'reply_to_message_id' => $update->message->message_id,
-                        'text' => 'Для начала войдите в свой аккаунт'
-                    ];
-                    $response = Http::get("https://api.telegram.org/bot6120276889:AAEQU2t2wCHYUpPkA0liwo9H2MbJ_uLNLO0/sendMessage?" . http_build_query($data));
-                    $data = [
-                        'chat_id' => $update->message->chat->id,
-                        'text' => 'Введите свой email'
-                    ];
-                    $response = Http::get("https://api.telegram.org/bot6120276889:AAEQU2t2wCHYUpPkA0liwo9H2MbJ_uLNLO0/sendMessage?" . http_build_query($data));
-                }
+                        $data = [
+                            'chat_id' => $update->message->chat->id,
+                            'reply_to_message_id' => $update->message->message_id,
+                            'text' => 'Здравствуйте! Я ваш личный помощник по платформе ЯПогода!!!'
+                        ];
+                        $response = Http::get("https://api.telegram.org/bot6120276889:AAEQU2t2wCHYUpPkA0liwo9H2MbJ_uLNLO0/sendMessage?" . http_build_query($data));
+                        $data = [
+                            'chat_id' => $update->message->chat->id,
+                            'text' => 'Для начала войдите в свой аккаунт'
+                        ];
+                        $response = Http::get("https://api.telegram.org/bot6120276889:AAEQU2t2wCHYUpPkA0liwo9H2MbJ_uLNLO0/sendMessage?" . http_build_query($data));
+                        $data = [
+                            'chat_id' => $update->message->chat->id,
+                            'text' => 'Введите свой email'
+                        ];
+                        $response = Http::get("https://api.telegram.org/bot6120276889:AAEQU2t2wCHYUpPkA0liwo9H2MbJ_uLNLO0/sendMessage?" . http_build_query($data));
+                    } else {
+                        $userdata = array(
+                            'status' => 'started',
+                        );
+                        Telegram::where('user_id', '=', $update->message->from->id)->update($userdata);
+                        $data = [
+                            'chat_id' => $update->message->chat->id,
+                            'reply_to_message_id' => $update->message->message_id,
+                            'text' => 'Для начала войдите в свой аккаунт'
+                        ];
+                        $response = Http::get("https://api.telegram.org/bot6120276889:AAEQU2t2wCHYUpPkA0liwo9H2MbJ_uLNLO0/sendMessage?" . http_build_query($data));
+                        $data = [
+                            'chat_id' => $update->message->chat->id,
+                            'text' => 'Введите свой email'
+                        ];
+                        $response = Http::get("https://api.telegram.org/bot6120276889:AAEQU2t2wCHYUpPkA0liwo9H2MbJ_uLNLO0/sendMessage?" . http_build_query($data));
+                    }
+                }else if($user->status == 'logined') {
+                    if($update->message->text == '/logout'){
+                        Telegram::where('userbase_id',$user->id)->delete();
+                        $data = [
+                            'chat_id' => $update->message->chat->id,
+                            'text' => 'Вы успешно вышли!'
+                        ];
+                        $response = Http::get("https://api.telegram.org/bot6120276889:AAEQU2t2wCHYUpPkA0liwo9H2MbJ_uLNLO0/sendMessage?" . http_build_query($data));
+                    }else{
+                        $data = [
+                            'chat_id' => $update->message->chat->id,
+                            'text' => 'Для выхода из аккаунта напишите /logout'
+                        ];
+                        $response = Http::get("https://api.telegram.org/bot6120276889:AAEQU2t2wCHYUpPkA0liwo9H2MbJ_uLNLO0/sendMessage?" . http_build_query($data));
+                    }
                 } else if ($user->status == 'started') {
                     $userdata = array(
                         'status' => 'password',
