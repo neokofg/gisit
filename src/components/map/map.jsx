@@ -67,7 +67,14 @@ const MapOL = () => {
   const pr = new GeoTIFF({
     sources: [
       {
-        url: "/pr1.tif",
+        url: "/pr3.tif",
+      },
+    ],
+  });
+  const bio = new GeoTIFF({
+    sources: [
+      {
+        uri: "/https://getlet.ru/maps/bio.tif",
       },
     ],
   });

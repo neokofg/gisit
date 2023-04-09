@@ -1,5 +1,11 @@
+import User from "@/components/user";
+
 const Subs = () => {
-  return <div></div>;
+  return (
+    <div className="container">
+      <User></User>
+    </div>
+  );
 };
 
 export default Subs;
