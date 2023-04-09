@@ -4,6 +4,7 @@ import { Manrope } from "next/font/google";
 import type { FC, ReactNode } from "react";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
+import Modal from "@/components/modal/index";
 const manrope = Manrope({ subsets: ["cyrillic"] });
 type Layout = {
   children: ReactNode;
@@ -26,7 +27,7 @@ const MainLayout: FC<Layout> = ({ children }) => {
         {children}
         <Footer></Footer>
       </main>
-      {/* <Modal /> */}
+      <Modal />
     </>
   );
 };

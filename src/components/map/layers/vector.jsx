@@ -4,23 +4,32 @@ import OLVectorLayer from "ol/layer/Vector";
 import VectorSource from "ol/source/Vector";
 import GeoJSON from "ol/format/GeoJSON";
 import { Style, Fill, Stroke, Text } from "ol/style";
-function styleFunc(feature, resolution) {
-  return new Style({
+const labelStyle = new Style({
+  text: new Text({
+    font: "14px Manrope,sans-serif",
     fill: new Fill({
-      color: "rgba(29,123,243,0)",
+      color: "#000",
     }),
     stroke: new Stroke({
-      color: "white",
-      width: 1,
+      color: "#fff",
+      width: 4,
     }),
-    text: new Text({
-      text: feature.values_.district,
-      textBaseline: "baseline",
-      textAlign: "center",
-      fill: new Fill({ color: "red" }),
-      font: "400 20px",
-    }),
-  });
+  }),
+});
+const countryStyle = new Style({
+  fill: new Fill({
+    color: "rgba(255, 255, 255, 0.1)",
+  }),
+  stroke: new Stroke({
+    color: "#319FD3",
+    width: 1,
+  }),
+});
+const style = [countryStyle, labelStyle];
+
+function styleFunc(feature) {
+  labelStyle.getText().setText(feature.values_.district);
+  return style;
 }
 
 const VectorLayer = ({ source, style, zIndex = 0 }) => {
@@ -39,11 +48,10 @@ const VectorLayer = ({ source, style, zIndex = 0 }) => {
     });
     map.addLayer(vectorLayer);
     vectorLayer.setZIndex(zIndex);
-    console.log("hey");
+
     return () => {
       if (map) {
         map.removeLayer(vectorLayer);
-        console.log("?");
       }
     };
   }, [map]);

@@ -6,13 +6,16 @@ import { Provider } from "react-redux";
 import AuthModal from "../components/auth";
 import client from "../graphql";
 import MainLayout from "@/layouts";
+import AuthLayout from "@/layouts/auth";
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <ApolloProvider client={client}>
       <Provider store={store}>
-        <MainLayout>
-          <Component {...pageProps} />
-        </MainLayout>
+        <AuthLayout>
+          <MainLayout>
+            <Component {...pageProps} />
+          </MainLayout>
+        </AuthLayout>
       </Provider>
     </ApolloProvider>
   );

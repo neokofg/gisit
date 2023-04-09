@@ -11,8 +11,12 @@ const Footer: FC = () => {
             <Logo></Logo>
           </Link>
           <ul className="flex text-lg font-medium leading-[25px] text-[#747474] gap-8">
-            <li>Главная</li>
-            <li>Карта</li>
+            <li>
+              <Link href="/">Главная</Link>
+            </li>
+            <li>
+              <Link href="/map">Карта</Link>
+            </li>
             <li>Способ оплаты</li>
             <li>О нас</li>
           </ul>

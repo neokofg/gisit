@@ -1,8 +1,11 @@
 import React, { useRef, useState, useEffect } from "react";
+import { useAppDispatch } from "@/hooks";
+import { setActiveDistrict } from "@/store/map.slice";
 import "./map.module.css";
 import MapContext from "./context";
 import * as ol from "ol";
 const Map = ({ children, zoom, center, extent, projection }) => {
+  const dispatch = useAppDispatch();
   const mapRef = useRef();
   const [map, setMap] = useState(null);
   if (map) {
@@ -12,7 +15,7 @@ const Map = ({ children, zoom, center, extent, projection }) => {
         return f;
       });
       if (feature) {
-        alert(feature.values_.district);
+        dispatch(setActiveDistrict(feature.values_.district));
       }
     });
   }

@@ -8,11 +8,11 @@ const Sub = () => {
         <span className="text-blue-500">цены</span> на подписку
       </h1>
       <div className="mt-7 flex gap-4">
-        <SubCard title="Стандарт" price="999" level={1}>
+        <SubCard title="Стандарт" price="990" level={1}>
           После прохождения сможете самостоятельно выполнять заказы на фрилансе
           или устроиться в агентство
         </SubCard>
-        <SubCard active={true} title="Про" price="3 490" level={2}>
+        <SubCard active={true} title="Про" price="2 290" level={2}>
           После прохождения сможете самостоятельно выполнять заказы на фрилансе
           или устроиться в агентство
         </SubCard>

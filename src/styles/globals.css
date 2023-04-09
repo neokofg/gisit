@@ -8,6 +8,11 @@
 body {
   background-color: #f1f5f9;
 }
+.modal {
+  @apply w-screen h-screen absolute top-0 flex justify-center items-center;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 100;
+}
 .ol-map {
   min-width: 600px;
   min-height: 500px;

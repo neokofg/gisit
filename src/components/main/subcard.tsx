@@ -3,6 +3,13 @@ import { PrimaryButton } from "../ui/buttons";
 // import Check from "@/assets/svg/check";
 import Check from "@/assets/svg/check";
 import Box from "./box";
+import { useRouter } from "next/router";
+import { gql, useMutation } from "@apollo/client";
+const OPLATA = gql`
+  mutation Mutation($input: BuyMap!) {
+    buyMap(input: $input)
+  }
+`;
 interface SubCardProps {
   children: ReactNode;
   title: string;
@@ -17,6 +24,8 @@ const SubCard: FC<SubCardProps> = ({
   level,
   active = false,
 }) => {
+  const router = useRouter();
+  const [oplata, { data, loading }] = useMutation(OPLATA);
   return (
     <div className="pt-9 flex flex-col justify-between border border-opacity-[0.12] rounded-[44px] w-[420px] h-[840px] pb-[25px] px-[33px]">
       <div className="flex flex-col">
@@ -75,7 +84,22 @@ const SubCard: FC<SubCardProps> = ({
         <PrimaryButton
           width="100%"
           rounded="12px"
-          onClick={() => void console.log("clicked!")}
+          onClick={async () => {
+            await oplata({
+              variables: {
+                input: {
+                  scientist_id: 1,
+                },
+              },
+              context: {
+                headers: {
+                  Authorization: "Bearer " + localStorage.getItem("token"),
+                },
+              },
+            }).then((response) => {
+              router.push(response.data.buyMap);
+            });
+          }}
         >
           Оформить подписку
         </PrimaryButton>

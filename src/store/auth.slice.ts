@@ -16,10 +16,7 @@ const ModalSlice = createSlice({
   reducers: {
     setAuth(state, action: PayloadAction<boolean>) {
       state.logged = action.payload;
-      state.user = localStorage.getItem("token");
-      console.log(state.user);
-
-      console.log("lol");
+      if (action.payload) state.user = localStorage.getItem("token");
     },
   },
 });
