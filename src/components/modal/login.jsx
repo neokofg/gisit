@@ -6,7 +6,7 @@ import { gql, useMutation, useQuery } from "@apollo/client";
 import { PrimaryButton } from "@/components/ui/buttons";
 import { ModalInput } from "@/components/ui/inputs";
 import { useAppDispatch } from "@/hooks";
-import { setAuth } from "@/store/auth.slice";
+import { setAuth, setUser } from "@/store/auth.slice";
 import { setType } from "@/store/modal.slice";
 import client from "@/graphql";
 const gilroyBold = Gilroy({
@@ -15,6 +15,15 @@ const gilroyBold = Gilroy({
 const SIGNIN = gql`
   query Query($input: AuthUser!) {
     authUser(input: $input)
+  }
+`;
+const ME = gql`
+  query Me {
+    me {
+      id
+      name
+      email
+    }
   }
 `;
 const Login = () => {
@@ -38,7 +47,17 @@ const Login = () => {
       .then((response) => {
         localStorage.setItem("token", response.data.authUser);
         dispatch(setAuth(true));
-        router.reload();
+      });
+    await client
+      .query({
+        query: ME,
+        context: {
+          headers: { Authorization: "Bearer " + localStorage.getItem("token") },
+        },
+      })
+      .then((response) => {
+        dispatch(setUser(response.data.me));
+        localStorage.setItem("user", JSON.stringify(response.data.me));
       });
   };
   return (

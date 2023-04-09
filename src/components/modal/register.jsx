@@ -4,7 +4,7 @@ import Gilroy from "next/font/local";
 import { gql, useMutation } from "@apollo/client";
 import { PrimaryButton } from "@/components/ui/buttons";
 import { ModalInput } from "@/components/ui/inputs";
-import { setAuth } from "@/store/auth.slice";
+import { setAuth, setUser } from "@/store/auth.slice";
 const gilroyBold = Gilroy({
   src: "../../fonts/Gilroy-Bold.woff",
 });
@@ -19,6 +19,7 @@ const Register = () => {
   const dispatch = useAppDispatch();
   const router = useRouter();
   const [signup, { data, loading }] = useMutation(SIGNUP);
+  const [me, { data2, loading2 }] = useMutation(ME);
   const [username, setUsername] = useState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
@@ -38,6 +39,16 @@ const Register = () => {
         localStorage.setItem("token", response.data.createUser);
         dispatch(setAuth(true));
         router.reload();
+      });
+      await me({
+        context: {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        },
+      }).then((response) => {
+        dispatch(setUser(response.data.me));
+        localStorage.setItem("user", JSON.stringify(response.data.me));
       });
     }
   };

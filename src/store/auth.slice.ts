@@ -1,13 +1,19 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
-
+interface User {
+  id: number;
+  name: string;
+  email: string;
+}
 type Auth = {
   logged: boolean;
-  user: string | null;
+  user: User | null;
+  token: string | null;
 };
 
 const initialState: Auth = {
   logged: false,
   user: null,
+  token: null,
 };
 
 const ModalSlice = createSlice({
@@ -16,10 +22,18 @@ const ModalSlice = createSlice({
   reducers: {
     setAuth(state, action: PayloadAction<boolean>) {
       state.logged = action.payload;
-      if (action.payload) state.user = localStorage.getItem("token");
+      if (action.payload) {
+        state.token = localStorage.getItem("token");
+      }
+      const user = JSON.parse(localStorage.getItem("user") || "{}");
+      state.user = user;
+      console.log(state.user);
+    },
+    setUser(state, action: PayloadAction<User>) {
+      state.user = action.payload;
     },
   },
 });
 
-export const { setAuth } = ModalSlice.actions;
+export const { setAuth, setUser } = ModalSlice.actions;
 export default ModalSlice.reducer;

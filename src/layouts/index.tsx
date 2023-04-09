@@ -20,11 +20,15 @@ const MainLayout: FC<Layout> = ({ children }) => {
       <main
         style={{
           overflow: modal ? "hidden" : "auto",
+          minHeight: "100vh",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-between",
         }}
         className={manrope.className}
       >
         <Header></Header>
-        {children}
+        <div>{children}</div>
         <Footer></Footer>
       </main>
       <Modal />

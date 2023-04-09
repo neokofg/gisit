@@ -1,6 +1,14 @@
 import { useAppSelector } from "@/hooks";
 import { gql, useQuery } from "@apollo/client";
 
+const GETUSER = gql`
+  query Me {
+    me {
+      id
+    }
+  }
+`;
+
 const GETDATA = gql`
   query User($userId: ID) {
     user(id: $userId) {
@@ -18,10 +26,11 @@ const GETDATA = gql`
 `;
 
 const User = () => {
-  const token = useAppSelector((state) => state.auth.user);
+  const token = useAppSelector((state) => state.auth.token);
+  const user = useAppSelector((state) => state.auth.user);
   const { data } = useQuery(GETDATA, {
     variables: {
-      userId: 1,
+      userId: user?.id,
     },
     context: {
       headers: {
@@ -29,19 +38,31 @@ const User = () => {
       },
     },
   });
-  if (data)
-    return (
-      <div>
+  if (data) {
+    if (data.user.buyedScientists.length > 0) {
+      return (
         <div>
-          Nickname:
-          {data.user.buyedScientists[0].user.name}
-          Telegram:
-          {data.user.buyedScientists[0].telegram}
-          Phone:
-          {data.user.buyedScientists[0].phone}
+          <div>
+            {data.user.buyedScientists.length > 0 ? (
+              <div>
+                Nickname:
+                {data.user.buyedScientists[0].user.name}
+                <br />
+                Telegram:
+                {data.user.buyedScientists[0].telegram}
+                <br />
+                Phone:
+                {data.user.buyedScientists[0].phone}
+              </div>
+            ) : (
+              <></>
+            )}
+          </div>
         </div>
-      </div>
-    );
-  return <></>;
+      );
+    }
+  }
+
+  return <h1 className="text-[96px] text-center">404</h1>;
 };
 export default User;

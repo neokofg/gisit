@@ -24,7 +24,10 @@ const SearchBar = () => {
       <div className="flex gap-3 items-center">
         <SelectInput
           value={mapType}
-          onChange={(e) => void setMapType(e.target.value)}
+          onChange={(e) => {
+            setMapType(e.target.value);
+            dispatch(setActiveGeoTIFF(e.target.value));
+          }}
           placeholder="Выберите тип карты"
           height="64px"
           width="360px"
@@ -51,7 +54,6 @@ const SearchBar = () => {
         rounded="12px"
         onClick={() => {
           dispatch(setActiveDistrict(place));
-          dispatch(setActiveGeoTIFF(mapType));
         }}
       >
         Искать
