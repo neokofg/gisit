@@ -55,7 +55,13 @@ const Header = () => {
               </SecondaryButton>
             )}
 
-            <PrimaryButton width="168px" height="60px">
+            <PrimaryButton
+              width="168px"
+              height="60px"
+              onClick={() => {
+                router.push("https://t.me/yapogodaweather_bot");
+              }}
+            >
               Телеграм - бот
             </PrimaryButton>
           </div>
