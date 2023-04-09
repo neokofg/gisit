@@ -31,6 +31,7 @@ class ScientistService
     {
         try {
             return DB::transaction(function() use($input) {
+                $input['user_id'] = Auth::user()->id;
                 $scientist = Scientist::create($input);
                 $user = Auth::user();
                 $user->is_scientist = true;
