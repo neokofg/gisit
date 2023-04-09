@@ -20,17 +20,19 @@ type Query {
     scientists: [Scientist!]! @all
 
     getRegion(id: Int! @eq): JSONRegion
+
+    pushUser(user_id: Int! @eq, text: String!): String
 }
 
 type Mutation {
 
     createUser(input:CreateUser! @spread): String
 
-    createScientist(input:CreateScientist! @spread): Scientist @guard @auth
+    createScientist(input:CreateScientist! @spread): Scientist @guard
 
     approveScientist(id: Int! @eq, approve: Boolean!): String
 
-    createMap(input: CreateMap! @spread): Map @guard @auth
+    createMap(input: CreateMap! @spread): Map @guard
 
     buyMap(input: BuyMap! @spread): String @guard
 }

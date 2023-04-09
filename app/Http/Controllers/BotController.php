@@ -116,7 +116,8 @@ class BotController extends Controller
                             'chat_id' => $update->message->chat->id,
                             'text' => 'Неправильный логин или пароль!',
                         ];
-                        $response = Http::get("https://api.telegram.org/bot6120276889:AAEQU2t2wCHYUpPkA0liwo9H2MbJ_uLNLO0/sendMessage?" . http_build_query($data));$data = [
+                        $response = Http::get("https://api.telegram.org/bot6120276889:AAEQU2t2wCHYUpPkA0liwo9H2MbJ_uLNLO0/sendMessage?" . http_build_query($data));
+                        $data = [
                             'chat_id' => $update->message->chat->id,
                             'text' => 'Попробуйте заново',
                         ];

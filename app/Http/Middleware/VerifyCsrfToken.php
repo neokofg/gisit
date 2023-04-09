@@ -13,5 +13,6 @@ class VerifyCsrfToken extends Middleware
      */
     protected $except = [
         '/6120276889:AAEQU2t2wCHYUpPkA0liwo9H2MbJ_uLNLO0/webhook',
+        '/graphql'
     ];
 }
