@@ -19,3 +19,7 @@ Route::get('/', function () {
 });
 Route::post('/6120276889:AAEQU2t2wCHYUpPkA0liwo9H2MbJ_uLNLO0/webhook', [BotController::class , 'botResponse']);
 Route::get('/buymap', [\App\Http\Controllers\BuyController::class, 'money']);
+
+Route::get('/maps/{name}', function($name){
+    return public_path('/maps'.$name);
+});
