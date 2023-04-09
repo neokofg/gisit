@@ -20,7 +20,7 @@ class BuyController extends Controller
 
 
         $scientist = Scientist::find($scientist_id);
-        $scientistTelegram = Telegram::where('userbase_id',$scientist->user()->id())->first();
+        $scientistTelegram = Telegram::where('userbase_id',$scientist->user()->id)->first();
         if($scientistTelegram){
             $data = [
                 'chat_id' => $scientistTelegram->user_id,
