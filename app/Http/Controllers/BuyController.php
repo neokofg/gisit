@@ -29,6 +29,6 @@ class BuyController extends Controller
             $response = Http::get("https://api.telegram.org/bot6120276889:AAEQU2t2wCHYUpPkA0liwo9H2MbJ_uLNLO0/sendMessage?" . http_build_query($data));
         }
 
-        return Redirect::away('https://getlet.ru/');
+        return Redirect::away('https://yapogoda.ru/subs');
     }
 }
